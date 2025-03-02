@@ -1,131 +1,144 @@
-import React from "react";
-import profilepic from "../assets/profpic.png";
-import { TypeAnimation } from "react-type-animation";
-import ShinyEffect from "./ShinyEffect";
-import {
-  AiOutlineGithub,
-  AiOutlineInstagram,
-  AiOutlineLink,
-  AiOutlineLinkedin,
-} from "react-icons/ai";
-import {
-  DiCss3,
-  DiHtml5,
-  DiJavascript1,
-  DiNodejsSmall,
-  DiReact,
-} from "react-icons/di";
+import React, { useState, useEffect } from "react";
+import { AiOutlinePhone } from "react-icons/ai";
+import { DiCss3, DiHtml5, DiJavascript1, DiNodejsSmall, DiReact } from "react-icons/di";
 import { motion } from "framer-motion";
 
+const techStack = [
+  { name: "HTML5", icon: <DiHtml5 className="text-orange-600" /> },
+  { name: "CSS3", icon: <DiCss3 className="text-blue-600" /> },
+  { name: "JavaScript", icon: <DiJavascript1 className="text-yellow-500" /> },
+  { name: "React", icon: <DiReact className="text-blue-500" /> },
+  { name: "Node.js", icon: <DiNodejsSmall className="text-green-500" /> },
+];
+
+const phrases = ["Scalable", "Custom", "High-Performance", "Secure", "Responsive"];
 
 const Hero = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    }, 2500); // Change phrase every 2.5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Text animation variants
+  const text = "Let’s Build Your Website";
+  const containerVariants = {
+    visible: {
+      transition: { staggerChildren: 0.1, delayChildren: 0.5, repeat: Infinity, repeatDelay: 1.5 },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
+
   return (
-    <div className="mt-24 max-w-[1200px] mx-auto relative">
-        <div className="grid md:grid-cols-2 place-items-center gap-8">
-            <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            >
-                <TypeAnimation
-                    sequence={[
-                        "Fullstack Dev",
-                        1000,
-                        "Webdesigner",
-                        1000,
-                        "Consultant",
-                        1000
-                    ]}
-                    speed={50}
-                    repeat={Infinity}
-                    className="font-bold text-gray-400 text-xl md:text-5xl italic- mb-4"
-                />
-
-                <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="text-gray-200 md:text-7xl text-5xl tracking-tight mb-4"
-                >
-                    HEY, I AM <br/>
-                    <span className="text-purple-500">JOHN DOE</span>
-                </motion.p>
-
-                <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 1 }}
-                className="text-gray-300 max-w-[300px] md:max-w-[500px] md:text-2xl text-lg mb-6"
-                >
-                    I am a passionate fullstack developer with over 5 years of experience.
-                </motion.p>
-
-                <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 1.5 }}
-                className="flex flex-row items-center gap-6 my-4 md:mb-0"
-                >
-                    <motion.button whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.3)" }}
-                        className="z-10 cursor-pointer font-bold text-gray-200 md:w-auto p-4 border
-                                     border-purple-400 rounded-xl"     
-                    >
-                        Download CV
-                    </motion.button>
-
-                    <div className="flex gap-6 flex-row text-4xl md:text-6xl text-purple-400 z-20">
-                        <motion.a whileHover={{ scale: 1.2 }} href="#">
-                            <AiOutlineGithub/>
-                        </motion.a>
-
-                        <motion.a whileHover={{ scale: 1.2 }} href="#">
-                            <AiOutlineLinkedin/>
-                        </motion.a>
-
-                        <motion.a whileHover={{ scale: 1.2 }} href="#">
-                            <AiOutlineInstagram/>
-                        </motion.a>
-                    </div>
-                </motion.div>
-            </motion.div>
-
-
-            <motion.img 
-                src={profilepic}
-                className="w-[300px] md:w-[450px]"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
-            />
-        </div>
-
-        <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 2 }}
-            className="flex flex-row text-7xl px-12 md:px-0 w-full justify-center items-center py-24"
+    <div className="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
+      
+      {/* Heading Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="w-full max-w-4xl"
+      >
+        <motion.p
+          className="text-gray-200 md:text-5xl text-3xl tracking-tight mb-6 mt-24 md:mt-20"
         >
-            <p className="text-gray-200 mr-6">My Tech Stack</p>
-            <DiHtml5 className="text-orange-600 mx-2" />
-            <DiCss3 className="text-blue-600 mx-2" />
-            <DiJavascript1 className="text-yellow-500 mx-2" />
-            <DiReact className="text-blue-500 mx-2" />
-            <DiNodejsSmall className="text-green-500 mx-2" />
+          <motion.span
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="font-bold text-purple-400 glow-text inline-block"
+          >
+            {phrases[index]}
+          </motion.span>{" "}
+          Full-Stack Web Solutions <br />
+          <span className="font-bold">FOR YOUR BUSINESS</span>
+        </motion.p>
 
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-gray-300 text-lg md:text-xl mb-6 px-4"
+        >
+          NeuraWeb is your trusted partner for cutting-edge full-stack website development. 
+          We turn your ideas into stunning, responsive, and high-performance web applications.
+        </motion.p>
+
+        {/* Animated Letter-by-Letter Text with Infinite Loop */}
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className="text-gray-200 text-xl font-semibold flex justify-center"
+        >
+          {text.split("").map((char, index) => (
+            <motion.span key={index} variants={letterVariants} className="inline-block">
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
         </motion.div>
 
-        <div className="absolute inset-0 hidden md:block">
-            <ShinyEffect left={0} top={0} size={1400} />
-        </div>
-        
-    </div>
-  )
-}
+        {/* Call to Action Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="flex flex-col items-center gap-4 my-4"
+        >
+          <motion.a
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 0px 15px #ff3bc4",
+              transition: { duration: 0.3 },
+            }}
+            href="tel:+916381546052"
+            className="z-10 cursor-pointer font-bold text-white bg-[#111111] hover:bg-[#ff3bc4] px-6 py-3 text-lg border border-gray-500 rounded-lg flex items-center gap-2 transition-all relative shadow-lg"
+          >
+            <AiOutlinePhone className="text-white text-xl" />
+            Contact Us
+          </motion.a>
+        </motion.div>
+      </motion.div>
 
-export default Hero
+      {/* Tech Stack Section */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="flex flex-col items-center justify-center text-center py-12 px-6 w-full"
+      >
+        {/* Title */}
+        <p className="text-gray-200 text-3xl md:text-5xl font-extrabold tracking-wide font-[Poppins] mb-6">
+          Our Tech Stack
+        </p>
+
+        {/* Tech Icons */}
+        <div className="flex flex-wrap justify-center gap-6 max-w-[90%]">
+          {techStack.map((tech, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.2, textShadow: "0px 0px 10px rgba(255, 255, 255, 0.8)" }}
+              transition={{ duration: 0.3 }}
+              className="text-5xl md:text-6xl p-3 bg-gray-800/50 hover:bg-gray-700/70 rounded-lg shadow-lg cursor-pointer"
+            >
+              {tech.icon}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default Hero;

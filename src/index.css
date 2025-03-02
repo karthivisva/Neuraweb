@@ -3,32 +3,73 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Set the main font and background color */
 body {
   font-family: "Space Grotesk", sans-serif;
-  background-color: #190b1f;
+  background: linear-gradient(to bottom right, rgb(64, 63, 63),  #7f00ed, #0a0a0a);
 }
 
+/* Headings */
 h2 {
-  @apply text-xl md:text-4xl
+  @apply text-xl md:text-4xl text-white;
 }
 
+/* Paragraphs */
 p {
-  @apply text-xl tracking-tight leading-relaxed
+  @apply text-xl tracking-tight leading-relaxed text-gray-300;
 }
 
+/* Highlights */
 span {
-  @apply text-purple-600
+  @apply ring-black text-purple-300;
 }
 
-
+/* Shiny effect (same as before) */
 .shiny-effect {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(178, 19, 202, 0.2), transparent 70%);
+  background: radial-gradient(circle, rgb(6, 6, 6), transparent 70%);
 }
 
+/* Primary color background */
 .bg-primary-color {
-    @apply bg-purple-600
+  @apply bg-[#7f00ed]; /* Updated to match your theme */
+}
+
+
+/* Button styles with neon effect */
+.neon-button {
+  @apply text-white px-4 py-2 text-sm font-bold border border-[#7f00ed] rounded-lg transition-all;
+  background-color: #111111;
+  box-shadow: 0px 0px 10px rgba(115, 5, 155, 0.6);
+}
+
+.neon-button:hover {
+  background-color: #8936f59c;
+  box-shadow: 0px 0px 15px rgba(245, 54, 229, 0.8);
+}
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #6a0080, 0 0 20px #6a0080, 0 0 30px #6a0080;
+  }
+  50% {
+    text-shadow: 0 0 20px #6a0080, 0 0 40px #6a0080, 0 0 50px #6a0080;
+  }
+  100% {
+    text-shadow: 0 0 10px #6a0080, 0 0 20px #6a0080, 0 0 30px #6a0080;
+  }
+}
+
+.glow-text {
+  animation: glow 1.8s infinite alternate;
+  font-weight: bold;
+  color: #e806c6; /* Ensure text color is rich purple */
+}
+.hover-glow {
+  transition: text-shadow 0.3s ease-in-out;
+}
+.hover-glow:hover {
+  text-shadow: 0 0 10px rgba(255, 0, 153, 0.8);
 }
