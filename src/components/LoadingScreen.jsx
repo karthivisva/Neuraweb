@@ -6,7 +6,7 @@ const LoadingScreen = ({ onLoaded }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onLoaded();
-    }, 2000); // Adjust timing as needed
+    }, 2500); // Adjust timing as needed
 
     return () => clearTimeout(timer);
   }, [onLoaded]);
@@ -16,10 +16,19 @@ const LoadingScreen = ({ onLoaded }) => {
       <motion.img
         src={logo}
         alt="Loading..."
-        className="w-32 h-32"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
+        className="w-32 h-32 drop-shadow-lg"
+        initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
+        animate={{
+          opacity: 1,
+          scale: [1, 1.1, 1], // Pulse effect
+          rotate: [0, 10, -10, 0], // Subtle tilt effect
+        }}
+        transition={{
+          duration: 1.5,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
       />
     </div>
   );
