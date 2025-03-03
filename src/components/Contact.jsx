@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { motion } from "framer-motion";
 
 const Contact = () => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
+  const isValidEmail = useCallback((email) => {
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+  }, []);
 
-  const handleEmailChange = (e) => {
+  const handleEmailChange = useCallback((e) => {
     const value = e.target.value;
     setEmail(value);
     setEmailError(isValidEmail(value) ? "" : "Invalid email format");
-  };
+  }, [isValidEmail]);
 
   return (
     <div className="px-6 max-w-[1000px] mx-auto md:my-12" id="about">
@@ -25,7 +24,7 @@ const Contact = () => {
         transition={{ duration: 0.6 }}
         className="grid md:grid-cols-2 gap-12 items-center"
       >
-        {/* About Us Section */}
+        {/* About Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,10 +45,16 @@ const Contact = () => {
             Why Choose <span className="text-purple-400">Us?</span>
           </h3>
           <ul className="list-disc list-inside text-gray-400 space-y-2">
-            <li><strong>Custom Web Development</strong> - Tailored solutions for your business.</li>
-            <li><strong>Modern Tech Stack</strong> - React, Node.js, MongoDB, and more.</li>
-            <li><strong>Optimized Performance</strong> - Speed, security, and scalability.</li>
-            <li><strong>End-to-End Solutions</strong> - UI/UX to backend development.</li>
+            {[
+              "Custom Web Development - Tailored solutions for your business.",
+              "Modern Tech Stack - React, Node.js, MongoDB, and more.",
+              "Optimized Performance - Speed, security, and scalability.",
+              "End-to-End Solutions - UI/UX to backend development.",
+            ].map((text, index) => (
+              <li key={index}>
+                <strong>{text.split(" - ")[0]}</strong> - {text.split(" - ")[1]}
+              </li>
+            ))}
           </ul>
         </motion.div>
 
@@ -61,23 +66,29 @@ const Contact = () => {
           className="bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-md"
         >
           <h3 className="text-2xl font-semibold text-white mb-4">Send Us a Message</h3>
-          <form action="https://getform.io/f/bdrngeob" method="POST" className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-purple-400 transition"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={email}
-              onChange={handleEmailChange}
-              className={`w-full p-3 rounded-md bg-gray-700 text-white border ${emailError ? "border-red-500" : "border-gray-600"} focus:outline-none focus:border-purple-400 transition`}
-              required
-            />
+          <form action="https://getform.io/f/awnqwpzb" method="POST" className="space-y-4">
+            {[
+              { type: "text", name: "name", placeholder: "Your Name" },
+              {
+                type: "email",
+                name: "email",
+                placeholder: "Your Email",
+                value: email,
+                onChange: handleEmailChange,
+                className: emailError ? "border-red-500" : "border-gray-600",
+              },
+            ].map(({ type, name, placeholder, value, onChange, className }, index) => (
+              <input
+                key={index}
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                value={value}
+                onChange={onChange}
+                className={`w-full p-3 rounded-md bg-gray-700 text-white border ${className} focus:outline-none focus:border-purple-400 transition`}
+                required
+              />
+            ))}
             {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
             <textarea
               name="message"
