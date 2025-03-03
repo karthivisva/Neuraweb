@@ -1,19 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png"; // Your square logo
 
 const LoadingScreen = ({ onLoaded }) => {
+  const [isExiting, setIsExiting] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      onLoaded();
-    }, 2500); // Adjust timing as needed
+      setIsExiting(true); // Start exit animation
+      setTimeout(() => {
+        onLoaded(); // Call the parent function after animation
+      }, 1000); // Wait for exit animation to complete
+    }, 2500); // Initial loading animation duration
 
     return () => clearTimeout(timer);
   }, [onLoaded]);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-black">
-      <motion.div className="relative flex items-center justify-center">
+    <motion.div
+      className="fixed inset-0 flex items-center justify-center bg-black"
+      initial={{ opacity: 1 }}
+      animate={isExiting ? { opacity: 0 } : {}}
+      transition={{ duration: 0.8 }}
+    >
+      <motion.div
+        className="relative flex items-center justify-center"
+        animate={
+          isExiting
+            ? {
+                x: "-45vw", // Move to left
+                y: "-40vh", // Move to top
+                scale: 0.4, // Shrink effect
+                opacity: 0, // Fade out
+              }
+            : {}
+        }
+        transition={{ duration: 1, ease: "easeInOut" }}
+      >
         {/* Expanding Ripple Effect */}
         <motion.div
           className="absolute w-24 h-24 rounded-full border-4"
@@ -33,7 +56,7 @@ const LoadingScreen = ({ onLoaded }) => {
           transition={{ duration: 1, repeat: Infinity }}
         />
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
