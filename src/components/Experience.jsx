@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const experiences = [
-  { company: "Frontend Development", period: "", description: "React.js, Next.js, Tailwind CSS." },
-  { company: "Backend Development", period: "", description: "Node.js, Express.js, REST APIs." },
-  { company: "Database Management", period: "", description: "MongoDB, Firebase, MySQL." },
-  { company: "Machine Learning", period: "", description: "Python, TensorFlow, Scikit-Learn." },
-  { company: "Cloud & Deployment", period: "", description: "AWS, Vercel, Firebase." },
-  { company: "Performance Optimization", period: "", description: "Fast-loading, SEO-friendly websites." },
+  { title: "Frontend Development", skills: "React.js, Next.js, Tailwind CSS." },
+  { title: "Backend Development", skills: "Node.js, Express.js, REST APIs." },
+  { title: "Database Management", skills: "MongoDB, Firebase, MySQL." },
+  { title: "Machine Learning", skills: "Python, TensorFlow, Scikit-Learn." },
+  { title: "Cloud & Deployment", skills: "AWS, Vercel, Firebase." },
+  { title: "Performance Optimization", skills: "Fast-loading, SEO-friendly websites." },
 ];
 
 const Experience = () => {
@@ -22,30 +22,25 @@ const Experience = () => {
       {/* Experience Grid */}
       <motion.div 
         className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        initial="hidden"
-        animate="visible"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
       >
-        {experiences.map((experience, index) => (
+        {experiences.map(({ title, skills }, index) => (
           <Reveal key={index}>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               whileHover={{ 
                 y: -10, 
                 scale: 1.05, 
-                filter: "brightness(1.2)", 
-                transition: { duration: 0.4, ease: "easeOut" } 
+                transition: { duration: 0.3, ease: "easeOut" } 
               }}
               className="border border-purple-600 p-6 rounded-lg bg-purple-700/10 
               shadow-lg shadow-purple-500/50 h-[200px] flex flex-col justify-center items-center text-center 
               transition-all duration-300 ease-in-out"
             >
-              <h2 className="text-gray-100 text-2xl font-semibold">
-                {experience.company}
-              </h2>
-              <p className="text-gray-300">{experience.period}</p>
-              <p className="text-gray-400 mt-4">{experience.description}</p>
+              <h2 className="text-gray-100 text-2xl font-semibold">{title}</h2>
+              <p className="text-gray-400 mt-4">{skills}</p>
             </motion.div>
           </Reveal>
         ))}
