@@ -11,7 +11,7 @@ const techStack = [
   { name: "Node.js", icon: <DiNodejsSmall className="text-green-500" /> },
 ];
 
-const phrases = ["Scalable", "Custom", "High-Performance", "Secure", "Responsive"];
+const phrases = ["SCALEABLE", "CUSTOM", "HIGH-PERFORMANCE", "SECURE", "RESPONSIVE"];
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
@@ -71,8 +71,8 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="text-gray-300 text-lg md:text-xl mb-6 px-4"
         >
-          NeuraWeb is your trusted partner for cutting-edge full-stack website development. 
-          We turn your ideas into stunning, responsive, and high-performance web applications.
+          NeuraWeb Is Your Trusted Partner For Cutting-Edge Full-Stack Website Development. 
+          We Turn Your Ideas Into Stunning, Responsive, And High-Performance Web Applications.
         </motion.p>
 
         {/* Animated Letter-by-Letter Text with Infinite Loop */}
@@ -96,18 +96,19 @@ const Hero = () => {
           transition={{ duration: 1, delay: 1 }}
           className="flex flex-col items-center gap-4 my-4"
         >
-          <motion.a
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 0px 15px #ff3bc4",
-              transition: { duration: 0.3 },
-            }}
-            href="tel:+916381546052"
-            className="z-10 cursor-pointer font-bold text-white bg-[#111111] hover:bg-[#ff3bc4] px-6 py-3 text-lg border border-gray-500 rounded-lg flex items-center gap-2 transition-all relative shadow-lg"
-          >
-            <AiOutlinePhone className="text-white text-xl" />
-            Contact Us
-          </motion.a>
+ <motion.a
+  whileHover={{
+    scale: 1.05,
+    boxShadow: "0px 0px 15px #ff3bc4",
+    transition: { duration: 0.3 },
+  }}
+  href="tel:+916381546052"
+  className="z-10 cursor-pointer font-bold text-white bg-[#111111] hover:bg-[#ff3bc4] px-6 py-3 text-lg border border-gray-500  rounded-full flex items-center gap-2 transition-all relative shadow-lg"
+>
+  <AiOutlinePhone className="text-white text-xl" />
+  Contact Us
+</motion.a>
+
         </motion.div>
       </motion.div>
 

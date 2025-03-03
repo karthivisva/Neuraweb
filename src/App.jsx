@@ -47,7 +47,7 @@ export default function App() {
 
       {/* Floating Email Button with Animation */}
       <motion.a
-        href="mailto:your-email@example.com" // Replace with your actual email
+        href="mailto:neurawebindia@gmail.com" // Replace with your actual email
         className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 flex items-center justify-center text-3xl"
         style={{ zIndex: 1000 }}
         initial={{ y: 0 }} // Starting position

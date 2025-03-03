@@ -13,7 +13,7 @@ const experiences = [
 
 const Experience = () => {
   return (
-    <div className="px-6 max-w-[1000px] mx-auto md:my-16" id="experience">
+    <div className="px-6 max-w-[1000px] mx-auto md:my-16" id="Technologies">
       {/* Section Title */}
       <h1 className="text-4xl text-gray-200 font-bold text-center mb-12">
         Our Expertise & Technologies

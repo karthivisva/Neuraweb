@@ -50,7 +50,7 @@ const Navbar = () => {
           transition={{ duration: 1, delay: 0.5 }}
           className="hidden md:flex gap-12 z-10 cursor-pointer"
         >
-          {["about", "services", "experience"].map((item, index) => (
+          {["about", "services", "Technologies"].map((item, index) => (
             <motion.li
               key={index}
               initial={{ opacity: 0, y: -10 }}
@@ -88,10 +88,10 @@ const Navbar = () => {
           initial={false}
           animate={nav ? "open" : "closed"}
           variants={menuVariants}
-          className="fixed left-0 top-0 w-3/4 sm:w-1/2 min-h-screen bg-[#111] shadow-lg z-50 p-6 rounded-r-lg"
+          className="fixed left-0 top-0 w-3/4 sm:w-1/2 min-h-screen bg-gradient-to-r from-[#7f00ed] to-white shadow-lg z-50 p-6 rounded-r-lg"
         >
           <ul className="font-semibold text-2xl space-y-8 mt-16 text-center">
-            {["about", "services", "experience"].map((item, index) => (
+            {["about", "services", "Technologies"].map((item, index) => (
               <motion.li
                 key={index}
                 custom={index}
