@@ -15,6 +15,13 @@ const Contact = () => {
     setEmailError(isValidEmail(value) ? "" : "Invalid email format");
   }, [isValidEmail]);
 
+  const handleSubmit = (e) => {
+    if (!isValidEmail(email)) {
+      e.preventDefault(); // Prevent form submission
+      setEmailError("Please enter a valid email address.");
+    }
+  };
+
   return (
     <div className="px-6 max-w-[1000px] mx-auto md:my-12" id="about">
       <motion.div
@@ -66,29 +73,30 @@ const Contact = () => {
           className="bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-md"
         >
           <h3 className="text-2xl font-semibold text-white mb-4">Send Us a Message</h3>
-          <form action="https://getform.io/f/ajjmokma" method="POST" className="space-y-4">
-            {[
-              { type: "text", name: "name", placeholder: "Your Name" },
-              {
-                type: "email",
-                name: "email",
-                placeholder: "Your Email",
-                value: email,
-                onChange: handleEmailChange,
-                className: emailError ? "border-red-500" : "border-gray-600",
-              },
-            ].map(({ type, name, placeholder, value, onChange, className }, index) => (
-              <input
-                key={index}
-                type={type}
-                name={name}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                className={`w-full p-3 rounded-md bg-gray-700 text-white border ${className} focus:outline-none focus:border-purple-400 transition`}
-                required
-              />
-            ))}
+          <form
+            action="https://getform.io/f/ajjmokma"
+            method="POST"
+            className="space-y-4"
+            onSubmit={handleSubmit}
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              className="w-full p-3 rounded-md bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-purple-400 transition"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={email}
+              onChange={handleEmailChange}
+              className={`w-full p-3 rounded-md bg-gray-700 text-white border ${
+                emailError ? "border-red-500" : "border-gray-600"
+              } focus:outline-none focus:border-purple-400 transition`}
+              required
+            />
             {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
             <textarea
               name="message"
@@ -99,9 +107,11 @@ const Contact = () => {
             <button
               type="submit"
               className={`w-full py-3 rounded-md transition duration-300 shadow-lg ${
-                emailError ? "bg-gray-500 text-gray-300 cursor-not-allowed" : "bg-purple-500 hover:bg-purple-600 text-white"
+                !email || emailError
+                  ? "bg-gray-500 text-gray-300 cursor-not-allowed"
+                  : "bg-purple-500 hover:bg-purple-600 text-white"
               }`}
-              disabled={!!emailError}
+              disabled={!email || !!emailError}
             >
               Send Message
             </button>
@@ -113,3 +123,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
