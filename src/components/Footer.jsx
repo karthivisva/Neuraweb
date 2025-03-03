@@ -25,16 +25,15 @@ const Footer = () => {
         className="relative max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-16 rounded-lg text-center md:text-left"
       >
         {/* Left Section */}
-        <div className="md:flex md:items-center md:gap-8 w-full justify-between">
+        <div className="w-full flex flex-col items-center md:items-start gap-4">
           <div>
-          <p className="text-gray-400 text-sm mt-2">Designed & Developed by </p>
+            <p className="text-gray-400 text-sm mt-2">Designed & Developed by</p>
             <h3 className="text-2xl md:text-3xl font-bold text-white">Karthik.R</h3>
-            <p className="text-gray-400 text-sm mt-2">Founder Of Neuraweb </p>
-           
+            <p className="text-gray-400 text-sm mt-2">Founder Of NeuraWeb</p>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex space-x-6">
+          {/* Social Icons Centered on Mobile */}
+          <div className="flex justify-center md:justify-start space-x-6 w-full">
             <motion.a
               href="https://github.com/karthivisva"
               className="text-2xl md:text-3xl text-gray-400 hover:text-white transition relative"
@@ -53,7 +52,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <p className="text-gray-400 text-sm md:text-md mt-4 md:mt-0 text-center md:text-left w-full">
+        <p className="text-gray-400 text-sm md:text-md mt-4 md:mt-0 text-center w-full">
           © 2025 NeuraWeb | All rights reserved.
         </p>
       </motion.div>
