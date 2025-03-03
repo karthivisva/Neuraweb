@@ -4,7 +4,7 @@ import logo from "../assets/logo.png"; // Your logo
 
 const LoadingScreen = ({ onLoaded }) => {
   const [isExiting, setIsExiting] = useState(false);
-  const [isVisible, setIsVisible] = useState(true); // Controls visibility
+  const [isRemoved, setIsRemoved] = useState(false); // Tracks if component is fully removed
 
   useEffect(() => {
     document.body.style.backgroundColor = "#000"; // Prevent white flash
@@ -12,16 +12,16 @@ const LoadingScreen = ({ onLoaded }) => {
     const timer = setTimeout(() => {
       setIsExiting(true); // Start exit animation
       setTimeout(() => {
-        setIsVisible(false); // Ensure complete removal
-        onLoaded(); // Notify parent
+        setIsRemoved(true); // Fully remove from DOM
         document.body.style.backgroundColor = ""; // Reset background
-      }, 800); // Matches exit duration
-    }, 2000); // Time before exit animation starts
+        onLoaded(); // Call parent function AFTER removal
+      }, 800); // Matches exit animation duration
+    }, 2000); // Time before exit starts
 
     return () => clearTimeout(timer);
   }, [onLoaded]);
 
-  if (!isVisible) return null; // Prevents reappearing issue
+  if (isRemoved) return null; // Completely remove from DOM
 
   return (
     <motion.div
