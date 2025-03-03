@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiFillHeart } from "react-icons/ai";
@@ -9,31 +10,11 @@ import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
 
 const projects = [
-  {
-    img: project1,
-    title: "Custom Website Development",
-    description: "Tailor-made websites that align with your business goals.",
-  },
-  {
-    img: project2,
-    title: "E-commerce Development",
-    description: "Scalable online stores built with modern frameworks.",
-  },
-  {
-    img: project4,
-    title: "SaaS Development",
-    description: "Cloud-based software solutions for businesses.",
-  },
-  {
-    img: project5,
-    title: "Landing Pages & Portfolio Sites",
-    description: "High-converting, sleek designs for personal and business needs.",
-  },
-  {
-    img: project6,
-    title: "Web App Development",
-    description: "Interactive and high-performance web applications.",
-  },
+  { img: project1, title: "Custom Website Development", description: "Tailor-made websites that align with your business goals." },
+  { img: project2, title: "E-commerce Development", description: "Scalable online stores built with modern frameworks." },
+  { img: project4, title: "SaaS Development", description: "Cloud-based software solutions for businesses." },
+  { img: project5, title: "Landing Pages & Portfolio Sites", description: "High-converting, sleek designs for personal and business needs." },
+  { img: project6, title: "Web App Development", description: "Interactive and high-performance web applications." },
 ];
 
 const Portfolio = () => {
@@ -45,10 +26,8 @@ const Portfolio = () => {
   const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
-    const savedLikes = JSON.parse(localStorage.getItem("likedProjects")) || {};
-    const savedApplications = JSON.parse(localStorage.getItem("appliedProjects")) || {};
-    setLikedProjects(savedLikes);
-    setAppliedProjects(savedApplications);
+    setLikedProjects(JSON.parse(localStorage.getItem("likedProjects")) || {});
+    setAppliedProjects(JSON.parse(localStorage.getItem("appliedProjects")) || {});
   }, []);
 
   const handleLike = (index) => {
@@ -66,44 +45,55 @@ const Portfolio = () => {
     setEmailError("");
   };
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-    
-    if (!isValidEmail(value)) {
-      setEmailError("Invalid email format. Please enter a valid email.");
-    } else {
-      setEmailError("");
-    }
+    setEmail(e.target.value);
+    setEmailError(isValidEmail(e.target.value) ? "" : "Invalid email format.");
   };
 
-  const handleApply = () => {
+  const handleApply = async () => {
     if (!isValidEmail(email)) {
-      setEmailError("Invalid email format. Please enter a valid email.");
+      setEmailError("Invalid email format.");
       return;
     }
 
-    setAppliedProjects((prev) => {
-      const updatedApplications = { ...prev, [selectedProject]: email };
-      localStorage.setItem("appliedProjects", JSON.stringify(updatedApplications));
-      return updatedApplications;
-    });
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("project", projects[selectedProject].title);
 
-    setShowModal(false);
-    setEmail("");
+    try {
+      const response = await fetch("https://getform.io/f/awnqwpzb", {
+        method: "POST",
+        body: formData,
+      });
+
+      console.log("Response status:", response.status);
+      console.log("Response:", response);
+
+      if (response.ok) {
+        setAppliedProjects((prev) => {
+          const updatedApplications = { ...prev, [selectedProject]: email };
+          localStorage.setItem("appliedProjects", JSON.stringify(updatedApplications));
+          return updatedApplications;
+        });
+
+        alert("Application submitted successfully! You'll receive a notification on ," + email);
+        setShowModal(false);
+        setEmail("");
+      } else {
+        alert("Failed to submit. Check your GetForm endpoint.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error submitting form. Check console for details.");
+    }
   };
 
   return (
     <div className="max-w-[1000px] mx-auto p-6 md:my-20" id="services">
       <h2 className="text-3xl font-bold text-gray-200 mb-8">Services</h2>
       <p className="text-white-500 text-sm">Note: <span className="text-red-500">*</span> Your Application Will Be Saved</p>
-
-
 
       {projects.map((project, index) => (
         <Reveal key={index}>
@@ -114,7 +104,7 @@ const Portfolio = () => {
             transition={{ duration: 0.6, delay: index * 0.2 }}
             className={`flex flex-col md:flex-row ${index % 2 !== 0 ? "md:flex-row-reverse" : ""} mb-12 bg-gray-900 p-6 rounded-lg shadow-lg overflow-hidden`}
           >
-            <motion.div className="w-full md:w-1/2 p-4" transition={{ duration: 0.3 }}>
+            <motion.div className="w-full md:w-1/2 p-4">
               <img src={project.img} alt={project.title} className="w-full h-full object-cover rounded-lg shadow-lg" />
             </motion.div>
             <div className="w-full md:w-1/2 p-4 flex flex-col justify-center">
