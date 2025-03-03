@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import logo from "../assets/logo.png"; // Replace with your logo path
 
 const LoadingScreen = ({ onLoaded }) => {
   useEffect(() => {
@@ -13,25 +12,28 @@ const LoadingScreen = ({ onLoaded }) => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-black">
-      <motion.img
-        src={logo}
-        alt="Loading..."
-        className="w-32 h-32 drop-shadow-lg"
-        initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
-        animate={{
-          opacity: 1,
-          scale: [1, 1.1, 1], // Pulse effect
-          rotate: [0, 10, -10, 0], // Subtle tilt effect
-        }}
-        transition={{
-          duration: 1.5,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-      />
+      <motion.div
+        className="relative flex items-center justify-center"
+      >
+        {/* Outer Expanding Ring */}
+        <motion.div
+          className="absolute w-20 h-20 rounded-full border-4 border-blue-500"
+          initial={{ scale: 1, opacity: 1 }}
+          animate={{ scale: 2.5, opacity: 0 }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        />
+        
+        {/* Inner Pulsing Dot */}
+        <motion.div
+          className="w-6 h-6 bg-blue-500 rounded-full shadow-xl"
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.3, 1], opacity: [1, 0.8, 1] }}
+          transition={{ duration: 1, repeat: Infinity }}
+        />
+      </motion.div>
     </div>
   );
 };
 
 export default LoadingScreen;
+
