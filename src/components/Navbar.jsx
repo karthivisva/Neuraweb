@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -39,7 +40,7 @@ const Navbar = () => {
         
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <img src="/src/assets/logo.png" alt="/src/assets/logo.png" className="h-12 w-12 object-cover rounded-full" />
+            <img src={logo} alt="Logo" className="h-12 w-12 object-cover rounded-full" />
           <a href="/Neuraweb.io" className="font-bold text-white text-2xl">NEURAWEB</a>
         </div>
 
