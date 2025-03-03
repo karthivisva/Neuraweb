@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import logo from "../assets/logo.png"; // Ensure the logo path is correct
+import logo from "../assets/logo.png"; // Replace with your logo path
 
 const LoadingScreen = ({ onLoaded }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onLoaded();
-    }, 2000); // Simulated loading time (2 seconds)
+    }, 2000); // Adjust timing as needed
 
     return () => clearTimeout(timer);
   }, [onLoaded]);
@@ -26,4 +26,3 @@ const LoadingScreen = ({ onLoaded }) => {
 };
 
 export default LoadingScreen;
-
