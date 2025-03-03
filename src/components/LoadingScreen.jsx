@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import logo from "../assets/logo.png"; // Your square logo
 
 const LoadingScreen = ({ onLoaded }) => {
   useEffect(() => {
@@ -12,22 +13,23 @@ const LoadingScreen = ({ onLoaded }) => {
 
   return (
     <div className="flex items-center justify-center h-screen bg-black">
-      <motion.div
-        className="relative flex items-center justify-center"
-      >
-        {/* Outer Expanding Ring */}
+      <motion.div className="relative flex items-center justify-center">
+        {/* Expanding Ripple Effect */}
         <motion.div
-          className="absolute w-20 h-20 rounded-full border-4 border-blue-500"
+          className="absolute w-24 h-24 rounded-full border-4"
+          style={{ borderColor: "#7f00ed" }}
           initial={{ scale: 1, opacity: 1 }}
           animate={{ scale: 2.5, opacity: 0 }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-        
-        {/* Inner Pulsing Dot */}
-        <motion.div
-          className="w-6 h-6 bg-blue-500 rounded-full shadow-xl"
+
+        {/* Circular Logo with Pulse Effect */}
+        <motion.img
+          src={logo}
+          alt="Loading..."
+          className="w-16 h-16 rounded-full shadow-xl object-cover"
           initial={{ scale: 1 }}
-          animate={{ scale: [1, 1.3, 1], opacity: [1, 0.8, 1] }}
+          animate={{ scale: [1, 1.1, 1], opacity: [1, 0.9, 1] }}
           transition={{ duration: 1, repeat: Infinity }}
         />
       </motion.div>
@@ -36,4 +38,3 @@ const LoadingScreen = ({ onLoaded }) => {
 };
 
 export default LoadingScreen;
-
