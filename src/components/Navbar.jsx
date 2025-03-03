@@ -39,8 +39,8 @@ const Navbar = () => {
         
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <img src="/src/assets/logo.jpg" alt="NeuraWeb Logo" className="h-12 w-12 object-cover rounded-full" />
-          <a href="#" className="font-bold text-white text-2xl">NEURAWEB</a>
+          <img src="/src/assets/logo.png" alt="/src/assets/logo.png" className="h-12 w-12 object-cover rounded-full" />
+          <a href="/Neuraweb.io" className="font-bold text-white text-2xl">NEURAWEB</a>
         </div>
 
         {/* Desktop Menu */}
