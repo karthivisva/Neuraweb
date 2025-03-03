@@ -1,7 +1,7 @@
-import React, { useState, useLayoutEffect, lazy, Suspense } from "react";
+import { useLayoutEffect, lazy, Suspense, useState } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { motion } from "framer-motion";
-import LoadingScreen from "./components/LoadingScreen";
+import LoadingScreen from "./components/LoadingScreen"; // Import the loading animation screen
 
 // Lazy Load Components for Performance Optimization
 const Contact = lazy(() => import("./components/Contact"));
@@ -23,64 +23,54 @@ export default function App() {
 
   return (
     <>
-      {/* Show Loading Screen First */}
       {!isLoaded && <LoadingScreen onLoaded={() => setIsLoaded(true)} />}
+
       {isLoaded && (
-        <>
+        <Suspense fallback={<LoadingScreen />}>
           {/* Navbar */}
-          <Suspense fallback={<div>Loading Navbar...</div>}>
-            <Navbar />
-          </Suspense>
+          <Navbar />
 
           <main className="pt-20">
             <section id="hero">
-              <Suspense fallback={<div>Loading Hero...</div>}>
-                <Hero />
-              </Suspense>
+              <Hero />
             </section>
 
             <section id="skills">
-              <Suspense fallback={<div>Loading Skills...</div>}>
-                <Skills />
-              </Suspense>
+              <Skills />
             </section>
 
             <section id="portfolio">
-              <Suspense fallback={<div>Loading Portfolio...</div>}>
-                <Portfolio />
-              </Suspense>
+              <Portfolio />
             </section>
 
             <section id="experience">
-              <Suspense fallback={<div>Loading Experience...</div>}>
-                <Experience />
-              </Suspense>
+              <Experience />
             </section>
 
             <section id="contact">
-              <Suspense fallback={<div>Loading Contact...</div>}>
-                <Contact />
-              </Suspense>
+              <Contact />
             </section>
           </main>
 
           {/* Footer */}
-          <Suspense fallback={<div>Loading Footer...</div>}>
-            <Footer />
-          </Suspense>
+          <Footer />
 
           {/* Floating Email Button */}
           <motion.a
             href="mailto:neurawebindia@gmail.com"
             className="fixed bottom-6 right-6 bg-blue-500 text-white p-4 rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center text-3xl"
             style={{ zIndex: 1000 }}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.8 }} // Start invisible
             animate={{ opacity: 1, scale: 1, y: [0, -8, 0] }} // Bounce animation
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
             <AiOutlineMail />
           </motion.a>
-        </>
+        </Suspense>
       )}
     </>
   );
