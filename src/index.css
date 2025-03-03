@@ -73,3 +73,12 @@ span {
 .hover-glow:hover {
   text-shadow: 0 0 10px rgba(255, 0, 153, 0.8);
 }
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(138, 5, 187, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(138, 5, 187, 0.7); }
+  100% { box-shadow: 0 0 10px rgba(138, 5, 187, 0.3); }
+}
+
+.animate-glow {
+  animation: glow 2s infinite alternate;
+}
