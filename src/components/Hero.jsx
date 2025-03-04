@@ -61,7 +61,7 @@ const Hero = () => {
           We turn your ideas into stunning, responsive, and high-performance web applications.
         </motion.p>
 
-        {/* Call to Action - Contact Us */}
+        {/* Call to Action - Contact Us (Animated Button) */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -69,12 +69,16 @@ const Hero = () => {
           className="flex flex-col items-center gap-4 my-4"
         >
           <motion.a
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.3 },
-            }}
             href="mailto:neurawebindia@gmail.com"
             className="z-10 cursor-pointer font-bold text-white bg-[#111111] hover:bg-[#ff3bc4] px-6 py-3 text-lg border border-gray-500 rounded-full flex items-center gap-2 transition-all shadow-lg"
+            animate={{
+              scale: [1, 1.05, 1], // Pulsing effect
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
             <AiOutlineMail className="text-white text-xl" />
             Contact Us
@@ -113,4 +117,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
