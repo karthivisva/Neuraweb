@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AiOutlinePhone } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
 import { DiCss3, DiHtml5, DiJavascript1, DiNodejsSmall, DiReact } from "react-icons/di";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,13 +23,6 @@ const Hero = () => {
     }, 2500);
     return () => clearInterval(interval);
   }, []);
-
-  // Animated Heading Variants
-  const text = "Let’s Build Your Website";
-  const letterVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
@@ -68,16 +61,7 @@ const Hero = () => {
           We turn your ideas into stunning, responsive, and high-performance web applications.
         </motion.p>
 
-        {/* Animated Text */}
-        <motion.div className="text-gray-200 text-xl font-semibold flex justify-center">
-          {text.split("").map((char, i) => (
-            <motion.span key={i} variants={letterVariants} initial="hidden" animate="visible" className="inline-block">
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
-        </motion.div>
-
-        {/* Call to Action Button */}
+        {/* Call to Action - Contact Us */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,12 +73,11 @@ const Hero = () => {
               scale: 1.05,
               transition: { duration: 0.3 },
             }}
-            href="tel:+916381546052"
+            href="mailto:neurawebindia@gmail.com"
             className="z-10 cursor-pointer font-bold text-white bg-[#111111] hover:bg-[#ff3bc4] px-6 py-3 text-lg border border-gray-500 rounded-full flex items-center gap-2 transition-all shadow-lg"
           >
-              Contact Us
-            <AiOutlinePhone className="text-white text-xl transform rotate-90" />
-          
+            <AiOutlineMail className="text-white text-xl" />
+            Contact Us
           </motion.a>
         </motion.div>
       </motion.div>
@@ -130,3 +113,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
