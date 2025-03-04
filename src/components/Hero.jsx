@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlinePhone } from "react-icons/ai";
 import { DiCss3, DiHtml5, DiJavascript1, DiNodejsSmall, DiReact } from "react-icons/di";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Memoized Tech Stack Data
+// Tech Stack Data
 const techStack = [
   { name: "HTML5", icon: <DiHtml5 className="text-orange-600" /> },
   { name: "CSS3", icon: <DiCss3 className="text-blue-600" /> },
@@ -21,7 +21,6 @@ const Hero = () => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % phrases.length);
     }, 2500);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -93,8 +92,9 @@ const Hero = () => {
             href="tel:+916381546052"
             className="z-10 cursor-pointer font-bold text-white bg-[#111111] hover:bg-[#ff3bc4] px-6 py-3 text-lg border border-gray-500 rounded-full flex items-center gap-2 transition-all shadow-lg"
           >
-            <AiOutlinePhone className="text-white text-xl" />
-            Contact Us
+              Contact Us
+            <AiOutlinePhone className="text-white text-xl transform rotate-90" />
+          
           </motion.a>
         </motion.div>
       </motion.div>
@@ -130,4 +130,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
