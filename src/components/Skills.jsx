@@ -9,7 +9,6 @@ import {
   DiReact,
   DiNodejsSmall,
   DiMongodb,
-  DiVuejs,
   DiNodejsSmall as DiExpress,
 } from "react-icons/di"
 import Reveal from "./Reveal"
@@ -25,7 +24,6 @@ const skills = [
       { name: "Bootstrap", icon: <DiBootstrap className="text-purple-600" /> },
       { name: "JavaScript", icon: <DiJavascript1 className="text-yellow-500" /> },
       { name: "React", icon: <DiReact className="text-blue-500" /> },
-      { name: "Vue.js", icon: <DiVuejs className="text-green-500" /> },
     ],
   },
   {
