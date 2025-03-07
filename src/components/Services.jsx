@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Reveal from "./Reveal"; // ✅ Reusing animation wrapper
+import Reveal from "./Reveal"; // ✅ Reusing Reveal Animation Wrapper
 
 // List of services
 const services = [
@@ -14,7 +14,7 @@ const services = [
 
 const Services = () => {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12 text-gray-200" id="services">
+    <div className="max-w-full overflow-hidden py-12 text-gray-200" id="services">
       <Reveal>
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
@@ -26,20 +26,30 @@ const Services = () => {
         </motion.h2>
       </Reveal>
 
-      <div className="grid gap-6">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="p-6 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300"
-          >
-            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-            <p className="text-gray-400">{service.description}</p>
-          </motion.div>
-        ))}
+      {/* Scrolling Services List */}
+      <div className="relative w-full overflow-hidden">
+        <motion.div
+          className="flex space-x-8"
+          animate={{
+            x: ["0%", "-100%"], // Move left
+          }}
+          transition={{
+            ease: "linear",
+            duration: 20, // Adjust speed
+            repeat: Infinity, // Loop infinitely
+          }}
+        >
+          {/* Duplicate services to create a seamless loop effect */}
+          {[...services, ...services].map((service, index) => (
+            <div
+              key={index}
+              className="min-w-[250px] md:min-w-[300px] p-6 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300"
+            >
+              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+              <p className="text-gray-400">{service.description}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );
