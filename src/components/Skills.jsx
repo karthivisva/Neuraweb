@@ -1,5 +1,5 @@
-import React from "react"
-import { motion } from "framer-motion"
+import React from "react";
+import { motion } from "framer-motion";
 import {
   DiHtml5,
   DiCss3,
@@ -10,8 +10,8 @@ import {
   DiNodejsSmall,
   DiMongodb,
   DiGithubBadge,
-} from "react-icons/di"
-import Reveal from "./Reveal"
+} from "react-icons/di";
+import Reveal from "./Reveal"; // ✅ Ensure this file exists
 
 // Define skill categories
 const skills = [
@@ -35,7 +35,7 @@ const skills = [
       { name: "GitHub", icon: <DiGithubBadge className="text-gray-600" /> },
     ],
   },
-]
+];
 
 const Skills = () => {
   return (
@@ -57,7 +57,6 @@ const Skills = () => {
           className="text-center mb-8"
         >
           We worked on various frontend and fullstack projects.
-          .
         </motion.p>
 
         {/* Skill Cards */}
@@ -90,5 +89,7 @@ const Skills = () => {
         </div>
       </Reveal>
     </div>
-  )
-}
+  );
+};
+
+export default Skills;
