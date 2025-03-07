@@ -11,6 +11,7 @@ const Hero = lazy(() => import("./components/Hero"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const Portfolio = lazy(() => import("./components/Portfolio"));
 const Skills = lazy(() => import("./components/Skills"));
+const Services = lazy(() => import("./components/Services")); // ✅ Added Services Component
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -37,6 +38,11 @@ export default function App() {
 
             <section id="skills">
               <Skills />
+            </section>
+
+            {/* ✅ New Services Section (Appears After Skills) */}
+            <section id="services">
+              <Services />
             </section>
 
             <section id="portfolio">
