@@ -25,10 +25,10 @@ const Services = () => {
         </motion.h2>
       </Reveal>
 
-      {/* Scrolling Services for All Screens */}
-      <div className="relative w-full overflow-hidden">
+      {/* Scrollable Container */}
+      <div className="relative w-full overflow-x-auto whitespace-nowrap">
         <motion.div
-          className="flex space-x-6"
+          className="flex space-x-6 min-w-max"
           animate={{ x: ["0%", "-100%"] }}
           transition={{
             ease: "linear",
