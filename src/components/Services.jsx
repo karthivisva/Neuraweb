@@ -22,7 +22,7 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-4xl font-bold mb-6 text-center"
         >
-          Our Services
+         
         </motion.h2>
       </Reveal>
 
