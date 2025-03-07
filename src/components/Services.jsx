@@ -1,15 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Reveal from "./Reveal"; // ✅ Animation Wrapper
+import Reveal from "./Reveal";
 
-// List of services
 const services = [
-  { title: "Web Development", description: "Building modern and responsive websites." },
-  { title: "Full-Stack Solutions", description: "Complete frontend & backend development." },
-  { title: "E-Commerce", description: "Creating high-performing online stores." },
-  { title: "SEO Optimization", description: "Boosting website rankings on search engines." },
-  { title: "UI/UX Design", description: "Designing beautiful and intuitive user interfaces." },
-  { title: "Machine Learning Solutions", description: "Integrating AI into web applications." }
+  { title: "Custom Web Development", description: "Building tailored web applications with full-stack technologies." },
+  { title: "API Development & Integration", description: "Creating RESTful & GraphQL APIs and integrating third-party services." },
+  { title: "Database Design & Management", description: "Setting up and optimizing databases like MongoDB, MySQL, and PostgreSQL." },
+  { title: "Authentication & Security", description: "Implementing user authentication (JWT, OAuth) and security best practices." },
+  { title: "Performance Optimization", description: "Enhancing speed, caching, and scalability for better user experience." },
+  { title: "Deployment & Cloud Services", description: "Deploying applications on AWS, Vercel, or DigitalOcean with CI/CD pipelines." }
 ];
 
 const Services = () => {
@@ -22,19 +21,19 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-4xl font-bold mb-6 text-center"
         >
-         
+        
         </motion.h2>
       </Reveal>
 
-      {/* Desktop View: Horizontal Scrolling */}
+      {/* Desktop: Horizontal Scrolling */}
       <div className="hidden md:block w-full overflow-hidden relative">
         <motion.div
           className="flex space-x-8"
           animate={{ x: ["0%", "-100%"] }}
           transition={{
             ease: "linear",
-            duration: 20, // Adjust speed
-            repeat: Infinity, // Loop infinitely
+            duration: 20,
+            repeat: Infinity
           }}
         >
           {[...services, ...services].map((service, index) => (
@@ -49,7 +48,7 @@ const Services = () => {
         </motion.div>
       </div>
 
-      {/* Mobile View: Stacked Services */}
+      {/* Mobile: Stacked Services */}
       <div className="md:hidden grid grid-cols-1 gap-6">
         {services.map((service, index) => (
           <motion.div
