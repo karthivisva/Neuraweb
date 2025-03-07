@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 import Reveal from "./Reveal";
 
 const services = [
@@ -12,6 +12,9 @@ const services = [
 ];
 
 const Services = () => {
+  const scrollRef = useRef(null);
+  const controls = useAnimation();
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 text-gray-200 overflow-hidden" id="services">
       <Reveal>
@@ -26,20 +29,24 @@ const Services = () => {
       </Reveal>
 
       {/* Scrollable Container */}
-      <div className="relative w-full overflow-x-auto whitespace-nowrap">
+      <div
+        ref={scrollRef}
+        className="relative w-full overflow-x-auto flex scrollbar-hide scroll-smooth snap-x snap-mandatory"
+      >
         <motion.div
           className="flex space-x-6 min-w-max"
-          animate={{ x: ["0%", "-100%"] }}
+          animate={controls}
+          initial={{ x: "0%" }}
           transition={{
             ease: "linear",
-            duration: 25,
+            duration: 50, // Slower speed (adjust for best UX)
             repeat: Infinity
           }}
         >
           {[...services, ...services].map((service, index) => (
             <div
               key={index}
-              className="min-w-[250px] md:min-w-[300px] p-6 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300"
+              className="min-w-[250px] md:min-w-[300px] p-6 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300 snap-start"
             >
               <h3 className="text-xl font-bold mb-2">{service.title}</h3>
               <p className="text-gray-400">{service.description}</p>
