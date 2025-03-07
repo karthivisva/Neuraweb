@@ -9,8 +9,7 @@ import {
   DiReact,
   DiNodejsSmall,
   DiMongodb,
-  DiVuejs,
-  DiNodejsSmall as DiExpress,
+  DiGithubBadge,
 } from "react-icons/di"
 import Reveal from "./Reveal"
 
@@ -25,7 +24,6 @@ const skills = [
       { name: "Bootstrap", icon: <DiBootstrap className="text-purple-600" /> },
       { name: "JavaScript", icon: <DiJavascript1 className="text-yellow-500" /> },
       { name: "React", icon: <DiReact className="text-blue-500" /> },
-      { name: "Vue.js", icon: <DiVuejs className="text-green-500" /> },
     ],
   },
   {
@@ -34,7 +32,7 @@ const skills = [
       { name: "Node Js", icon: <DiNodejsSmall className="text-green-500" /> },
       { name: "MongoDB", icon: <DiMongodb className="text-green-600" /> },
       { name: "React", icon: <DiReact className="text-blue-500" /> },
-      { name: "Express.js", icon: <DiExpress className="text-gray-500" /> },
+      { name: "GitHub", icon: <DiGithubBadge className="text-gray-600" /> },
     ],
   },
 ]
@@ -59,6 +57,7 @@ const Skills = () => {
           className="text-center mb-8"
         >
           We worked on various frontend and fullstack projects.
+          .
         </motion.p>
 
         {/* Skill Cards */}
@@ -93,5 +92,3 @@ const Skills = () => {
     </div>
   )
 }
-
-export default Skills
