@@ -21,18 +21,18 @@ const Services = () => {
           transition={{ duration: 0.8 }}
           className="text-4xl font-bold mb-6 text-center"
         >
-        
+          Full-Stack Web Services
         </motion.h2>
       </Reveal>
 
-      {/* Desktop: Horizontal Scrolling */}
-      <div className="hidden md:block w-full overflow-hidden relative">
+      {/* Scrolling Services for All Screens */}
+      <div className="relative w-full overflow-hidden">
         <motion.div
-          className="flex space-x-8"
+          className="flex space-x-6"
           animate={{ x: ["0%", "-100%"] }}
           transition={{
             ease: "linear",
-            duration: 20,
+            duration: 25,
             repeat: Infinity
           }}
         >
@@ -46,23 +46,6 @@ const Services = () => {
             </div>
           ))}
         </motion.div>
-      </div>
-
-      {/* Mobile: Stacked Services */}
-      <div className="md:hidden grid grid-cols-1 gap-6">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="p-6 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300"
-          >
-            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-            <p className="text-gray-400">{service.description}</p>
-          </motion.div>
-        ))}
       </div>
     </div>
   );
