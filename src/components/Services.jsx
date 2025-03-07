@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Reveal from "./Reveal";
 
 const services = [
@@ -12,9 +12,6 @@ const services = [
 ];
 
 const Services = () => {
-  const scrollRef = useRef(null);
-  const controls = useAnimation();
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-12 text-gray-200 overflow-hidden" id="services">
       <Reveal>
@@ -29,27 +26,23 @@ const Services = () => {
       </Reveal>
 
       {/* Scrollable Container */}
-      <div
-        ref={scrollRef}
-        className="relative w-full overflow-x-auto flex scrollbar-hide scroll-smooth snap-x snap-mandatory"
-      >
+      <div className="relative w-full overflow-hidden">
         <motion.div
-          className="flex space-x-6 min-w-max"
-          animate={controls}
-          initial={{ x: "0%" }}
+          className="flex space-x-8"
+          animate={{ x: ["-100%", "0%"] }}
           transition={{
             ease: "linear",
-            duration: 50, // Slower speed (adjust for best UX)
+            duration: 50, // Adjust for speed
             repeat: Infinity
           }}
         >
           {[...services, ...services].map((service, index) => (
             <div
               key={index}
-              className="min-w-[250px] md:min-w-[300px] p-6 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300 snap-start"
+              className="min-w-[350px] md:min-w-[450px] p-8 border border-purple-900 bg-purple-900/20 rounded-lg shadow-lg hover:shadow-purple-500/40 transition duration-300"
             >
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              <p className="text-gray-400">{service.description}</p>
+              <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+              <p className="text-gray-400 text-lg">{service.description}</p>
             </div>
           ))}
         </motion.div>
