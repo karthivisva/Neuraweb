@@ -9,7 +9,6 @@ import {
   DiReact,
   DiNodejsSmall,
   DiMongodb,
-  DiNodejsSmall as DiExpress,
 } from "react-icons/di"
 import Reveal from "./Reveal"
 
