@@ -9,7 +9,8 @@ import {
   DiReact,
   DiNodejsSmall,
   DiMongodb,
-  DiGithubBadge,
+  DiVuejs,
+  DiNodejsSmall as DiExpress,
 } from "react-icons/di"
 import Reveal from "./Reveal"
 
@@ -24,6 +25,7 @@ const skills = [
       { name: "Bootstrap", icon: <DiBootstrap className="text-purple-600" /> },
       { name: "JavaScript", icon: <DiJavascript1 className="text-yellow-500" /> },
       { name: "React", icon: <DiReact className="text-blue-500" /> },
+      { name: "Vue.js", icon: <DiVuejs className="text-green-500" /> },
     ],
   },
   {
@@ -32,7 +34,7 @@ const skills = [
       { name: "Node Js", icon: <DiNodejsSmall className="text-green-500" /> },
       { name: "MongoDB", icon: <DiMongodb className="text-green-600" /> },
       { name: "React", icon: <DiReact className="text-blue-500" /> },
-      { name: "GitHub", icon: <DiGithubBadge className="text-gray-600" /> },
+      { name: "Express.js", icon: <DiExpress className="text-gray-500" /> },
     ],
   },
 ]
@@ -57,7 +59,6 @@ const Skills = () => {
           className="text-center mb-8"
         >
           We worked on various frontend and fullstack projects.
-          .
         </motion.p>
 
         {/* Skill Cards */}
@@ -92,3 +93,42 @@ const Skills = () => {
     </div>
   )
 }
+
+const Services = () => {
+  const services = ["Web Development", "UI/UX Design", "SEO Optimization", "Mobile App Development", "E-commerce Solutions"];
+
+  return (
+    <div className="max-w-[750px] mx-auto flex flex-col justify-center px-4 text-gray-200 pb-8 md:py-12" id="services">
+      <Reveal>
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl font-bold mb-4 text-center"
+        >
+          Our Services
+        </motion.h2>
+
+        <motion.ul
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center space-y-4"
+        >
+          {services.map((service, index) => (
+            <motion.li
+              key={index}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="border border-purple-900 p-4 rounded-lg bg-purple-900/20 shadow-lg hover:shadow-purple-500/40 transition duration-300"
+            >
+              {service}
+            </motion.li>
+          ))}
+        </motion.ul>
+      </Reveal>
+    </div>
+  );
+};
+
+export { Skills, Services };
