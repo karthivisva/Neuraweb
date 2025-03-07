@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiFillHeart } from "react-icons/ai";
@@ -61,15 +60,14 @@ const Portfolio = () => {
     const formData = new FormData();
     formData.append("email", email);
     formData.append("project", projects[selectedProject].title);
+    formData.append("message", `New application received for: ${projects[selectedProject].title}`);
+    formData.append("_replyto", "neurawebindia@gmail.com");  // Change this to your email
 
     try {
-      const response = await fetch("https://getform.io/f/awnqwpzb", {
+      const response = await fetch("https://getform.io/f/ajjmokma", {
         method: "POST",
         body: formData,
       });
-
-      console.log("Response status:", response.status);
-      console.log("Response:", response);
 
       if (response.ok) {
         setAppliedProjects((prev) => {
@@ -78,7 +76,7 @@ const Portfolio = () => {
           return updatedApplications;
         });
 
-        alert("Application submitted successfully! You'll receive a notification on ," + email);
+        alert("Application submitted successfully! You'll receive a notification on " + email);
         setShowModal(false);
         setEmail("");
       } else {
@@ -152,3 +150,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+
