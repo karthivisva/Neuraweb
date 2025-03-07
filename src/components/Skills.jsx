@@ -10,6 +10,7 @@ import {
   DiNodejsSmall,
   DiMongodb,
 } from "react-icons/di"
+import { FaServer } from "react-icons/fa" // Express.js placeholder icon
 import Reveal from "./Reveal"
 
 // Define skill categories
@@ -31,7 +32,7 @@ const skills = [
       { name: "Node Js", icon: <DiNodejsSmall className="text-green-500" /> },
       { name: "MongoDB", icon: <DiMongodb className="text-green-600" /> },
       { name: "React", icon: <DiReact className="text-blue-500" /> },
-      { name: "Express.js", icon: <DiExpress className="text-gray-500" /> },
+      { name: "Express.js", icon: <FaServer className="text-gray-500" /> }, // Fixed Express.js icon
     ],
   },
 ]
